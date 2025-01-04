@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install-deps": "apt-get update && apt-get install -y libvips libvips-dev libheif1 libheif-dev"
+    "start": "cd extensions/imagehook && npm run build && cd ../../ && npx directus start"
   },
   "keywords": [],
   "author": "",
