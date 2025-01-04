@@ -14,7 +14,8 @@
     "@supabase/supabase-js": "^2.47.10",
     "directus": "^11.3.5",
     "pg": "^8.13.1"
+  },
+  "devDependencies": {
+    "@flydotio/dockerfile": "^0.5.9"
   }
-
-
 }

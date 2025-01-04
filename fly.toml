@@ -1,0 +1,42 @@
+# fly.toml app configuration file for julenback-divine-frog-9256
+
+app = "julenback-divine-frog-9256"
+primary_region = "cdg" # Région France (Paris)
+
+[build]
+
+[http_service]
+  internal_port = 8055 # Port par défaut pour Directus
+  force_https = true
+  auto_stop_machines = "no"  # Désactive l'arrêt automatique des machines
+  auto_start_machines = true # Démarrage automatique en cas de besoin
+  min_machines_running = 1   # Toujours une machine en cours d'exécution
+  processes = ["app"]
+
+[experimental]
+  private_network = true # Active un réseau privé pour sécuriser les connexions entre services
+
+[env]
+  # Ajoutez ici vos variables d'environnement si nécessaire.
+  NODE_ENV = "production"
+
+[[services]]
+  internal_port = 8055
+  protocol = "tcp"
+
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+
+[[vm]]
+  memory = "256mb" # Conserve la gratuité en limitant la mémoire à 256 Mo
+  cpu_kind = "shared"
+  cpus = 1
